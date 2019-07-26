@@ -46,9 +46,6 @@ end
 
 defimpl Poison.Decoder, for: Quandl.V3.Model.Dataset do
   def decode(value, options) do
-    IO.puts("VZ in Dataset.decode")
-    IO.inspect(value, label: "value")
-    IO.inspect(options, label: "options")
     Quandl.V3.Model.Dataset.decode(value, options)
   end
 end
