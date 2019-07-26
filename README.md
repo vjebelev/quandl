@@ -9,7 +9,7 @@ The package can be installed by adding `quandl` to your list of dependencies in 
 ```elixir
 def deps do
   [
-    {:quandl, "~> 0.0.2"}
+    {:quandl, "~> 0.1.0"}
   ]
 end
 ```
