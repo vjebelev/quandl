@@ -1,6 +1,6 @@
 defmodule Quandl.V3.Model.DatasetData do
   @moduledoc """
-  Dataset.
+  Dataset Data Container.
 
   ## Attributes
   *   `dataset_data` (*type:* `Quandl.V3.Model.Dataset.t`), *default:* `nil`)
