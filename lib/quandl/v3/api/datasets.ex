@@ -13,7 +13,15 @@ defmodule Quandl.V3.Api.Datasets do
 
   *   `database_code` (*type:* `String.t`) - database code, e.g. WIKI.
   *   `dataset_code` (*type:* `String.t`) - dataset code, e.g. FB.
-  *   `connection` (*type:* `Quandl.V3.Connection.t`) - Connection to server.
+  *   `optional_params` (*type:* `keyword()`) - Optional parameters.
+      *   `column_index` (*type:* `integer()`)
+      *   `start_date` (*type:* `String.t()`)
+      *   `end_date` (*type:* `String.t()`) -e.g. "2014-12-31"
+      *   `collapse` (*type:* `String.t()`) - e.g. "monthly"
+      *   `transform` (*type:* `String.t()`) - e.g. "rdiff"
+  ## Returns
+  *   `{:ok, %Quandl.V3.Model.DatasetData` on success
+  *   `{:error, info` on failure
   """
 
   def get_dataset(
@@ -22,7 +30,13 @@ defmodule Quandl.V3.Api.Datasets do
         optional_params \\ []
       ) do
 
-    optional_params_config = %{}
+        optional_params_config = %{
+          :column_index => :query,
+          :start_date => :query,
+          :end_date => :query,
+          :collapse => :query,
+          :transform => :query
+        }
 
     request =
       Request.new()

@@ -9,7 +9,7 @@ The package can be installed by adding `quandl` to your list of dependencies in 
 ```elixir
 def deps do
   [
-    {:quandl, "~> 0.1.0"}
+    {:quandl, "~> 0.1.1"}
   ]
 end
 ```
@@ -33,6 +33,18 @@ Alternatively, use environment variable QUANDL_API_KEY.
 To fetch a list of FB daily prices:
 
 ```elixir
-IO.inspect Quandl.V3.Datasets.get_dataset("WIKI", "FB")
+Quandl.V3.Datasets.get_dataset("WIKI", "FB")
 ```
 
+To get monthly % changes in Facebook closing price for the year 2014:
+```elixir
+Quandl.V3.Datasets.get_dataset(
+  "WIKI",
+  "FB",
+  column_index: 4,
+  start_date: "2014-01-01",
+  end_date: "2014-12-31",
+  collapse: "monthly",
+  transform: "rdiff"
+)
+```
