@@ -14,11 +14,13 @@ defmodule Quandl.V3.Api.Datasets do
   *   `database_code` (*type:* `String.t`) - database code, e.g. WIKI.
   *   `dataset_code` (*type:* `String.t`) - dataset code, e.g. FB.
   *   `optional_params` (*type:* `keyword()`) - Optional parameters.
+      *   `limit` (*type:* `integer()`) - limits the dataset.
       *   `column_index` (*type:* `integer()`)
-      *   `start_date` (*type:* `String.t()`)
-      *   `end_date` (*type:* `String.t()`) -e.g. "2014-12-31"
-      *   `collapse` (*type:* `String.t()`) - e.g. "monthly"
-      *   `transform` (*type:* `String.t()`) - e.g. "rdiff"
+      *   `start_date` (*type:* `String.t()`) - e.g. "2014-01-01"
+      *   `end_date` (*type:* `String.t()`) - e.g. "2014-12-31"
+      *   `order` (*type:* `String.t()`) - "asc" or "desc" (default)
+      *   `collapse` (*type:* `String.t()`) - "none", "daily", "weekly", "monthly", "quarterly", "annual"
+      *   `transform` (*type:* `String.t()`) - "none", "diff", "rdiff", "rdiff_from", "cumul" or "normalize"
   ## Returns
   *   `{:ok, %Quandl.V3.Model.DatasetData` on success
   *   `{:error, info` on failure
