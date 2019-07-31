@@ -1,4 +1,4 @@
-defmodule Quandl.V3.Model.Database do
+defmodule Quandl.V3.Model.DatabaseMetadata do
   @moduledoc """
   Database metadata.
 
@@ -11,6 +11,8 @@ defmodule Quandl.V3.Model.Database do
   *   `downloads` (*type:* `Integer.t`), *default:* `nil`)
   *   `premium` (*type:* `Boolean.t`), *default:* `nil`)
   *   `image` (*type:* `String.t`), *default:* `nil`)
+  *   `favorite` (*type:* `Boolean.t`), *default:* `nil`)
+  *   `url_name` (*type:* `String.t`), *default:* `nil`)
   """
 
   use GoogleApi.Gax.ModelBase
@@ -23,7 +25,9 @@ defmodule Quandl.V3.Model.Database do
           :datasets_count => Integer.t(),
           :downloads => Integer.t(),
           :premium => Boolean.t(),
-          :image => String.t()
+          :image => String.t(),
+          :favorite => Boolean.t(),
+          :url_name => String.t()
         }
 
   field(:id)
@@ -34,15 +38,17 @@ defmodule Quandl.V3.Model.Database do
   field(:downloads)
   field(:premium)
   field(:image)
+  field(:favorite)
+  field(:url_name)
 end
 
-defimpl Poison.Decoder, for: Quandl.V3.Model.Database do
+defimpl Poison.Decoder, for: Quandl.V3.Model.DatabaseMetadata do
   def decode(value, options) do
-    Quandl.V3.Model.Database.decode(value, options)
+    Quandl.V3.Model.DatabaseMetadata.decode(value, options)
   end
 end
 
-defimpl Poison.Encoder, for: Quandl.V3.Model.Database do
+defimpl Poison.Encoder, for: Quandl.V3.Model.DatabaseMetadata do
   def encode(value, options) do
     GoogleApi.Gax.ModelBase.encode(value, options)
   end

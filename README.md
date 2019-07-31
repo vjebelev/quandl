@@ -9,7 +9,7 @@ The package can be installed by adding `quandl` to your list of dependencies in 
 ```elixir
 def deps do
   [
-    {:quandl, "~> 0.1.1"}
+    {:quandl, "~> 0.2.0"}
   ]
 end
 ```
@@ -20,7 +20,7 @@ be found at [https://hexdocs.pm/quandl](https://hexdocs.pm/quandl).
 
 ## Usage
 
-Make sure Quandl API key is setup in your config file (example below is for Elixir 1.9+), if using an older version use Mix.Config instead of Config.
+Make sure Quandl API key is setup in your config file.
 
 ```elixir
 import Config
@@ -30,15 +30,15 @@ config :quandl, api_key: "YOUR_API_KEY"
 
 Alternatively, use environment variable QUANDL_API_KEY.
 
-To fetch a list of FB daily prices:
+To fetch a time series of FB daily prices:
 
 ```elixir
-Quandl.V3.Datasets.get_dataset("WIKI", "FB")
+Quandl.V3.Datasets.get_data("WIKI", "FB")
 ```
 
 To get monthly % changes in Facebook closing price for the year 2014:
 ```elixir
-Quandl.V3.Datasets.get_dataset(
+Quandl.V3.Datasets.get_data(
   "WIKI",
   "FB",
   column_index: 4,
@@ -47,4 +47,16 @@ Quandl.V3.Datasets.get_dataset(
   collapse: "monthly",
   transform: "rdiff"
 )
+```
+
+To fetch metadata for the FB time series:
+
+```elixir
+Quandl.V3.Datasets.get_metadata("WIKI", "FB")
+```
+
+To fetch metadata for the WIKI database:
+
+```elixir
+Quandl.V3.Databases.get_metadata("WIKI")
 ```
