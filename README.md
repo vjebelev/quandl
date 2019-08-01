@@ -9,7 +9,7 @@ The package can be installed by adding `quandl` to your list of dependencies in 
 ```elixir
 def deps do
   [
-    {:quandl, "~> 0.2.0"}
+    {:quandl, "~> 0.2.1"}
   ]
 end
 ```
@@ -55,6 +55,11 @@ To fetch metadata for the FB time series:
 Quandl.V3.Datasets.get_metadata("WIKI", "FB")
 ```
 
+To fetch data and metadata for the FB time series, in one api call:
+
+```elixir
+Quandl.V3.Datasets.get_data_metadata("WIKI", "FB")
+```
 To fetch metadata for the WIKI database:
 
 ```elixir

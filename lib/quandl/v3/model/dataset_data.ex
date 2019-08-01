@@ -3,7 +3,7 @@ defmodule Quandl.V3.Model.DatasetData do
   Dataset Data for a time-series.
 
   ## Attributes
-  *   `data` (*type:* `list(Quandl.V3.Model.Bar.t)`), *default:* `nil`)
+  *   `data` (*type:* `list()`), *default:* `nil`)
   *   `column_index` (*type:* `Integer.t`), *default:* `nil`)
   *   `column_names` (*type:* `list(String.t)`, *default:* `nil`)
   *   `start_date`  (*type:* `String.t`), *default:* `nil`)
