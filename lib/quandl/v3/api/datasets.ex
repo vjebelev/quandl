@@ -26,12 +26,19 @@ defmodule Quandl.V3.Api.Datasets do
   *   `{:error, info}` on failure
   """
 
+  @spec get_data(
+          String.t(),
+          String.t(),
+          keyword()
+        ) ::
+          {:ok, Quandl.V3.Model.DatabaseDataContainer.t()}
+          | {:error, Tesla.Env.t()}
+
   def get_data(
         database_code,
         dataset_code,
         optional_params \\ []
       ) do
-
     optional_params_config = %{
       :column_index => :query,
       :start_date => :query,
@@ -50,9 +57,9 @@ defmodule Quandl.V3.Api.Datasets do
       |> Request.add_param(:query, :api_key, Quandl.get_api_key())
       |> Request.add_optional_params(optional_params_config, optional_params)
 
-    Quandl.V3.Connection.new
+    Quandl.V3.Connection.new()
     |> Connection.execute(request)
-    |> Response.decode([struct: %Quandl.V3.Model.DatasetDataContainer{}])
+    |> Response.decode(struct: %Quandl.V3.Model.DatasetDataContainer{})
   end
 
   @doc """
@@ -67,11 +74,17 @@ defmodule Quandl.V3.Api.Datasets do
   *   `{:error, info}` on failure
   """
 
+  @spec get_metadata(
+          String.t(),
+          String.t()
+        ) ::
+          {:ok, Quandl.V3.Model.DatabaseMetadataContainer.t()}
+          | {:error, Tesla.Env.t()}
+
   def get_metadata(
         database_code,
         dataset_code
       ) do
-
     request =
       Request.new()
       |> Request.method(:get)
@@ -81,9 +94,9 @@ defmodule Quandl.V3.Api.Datasets do
       })
       |> Request.add_param(:query, :api_key, Quandl.get_api_key())
 
-    Quandl.V3.Connection.new
+    Quandl.V3.Connection.new()
     |> Connection.execute(request)
-    |> Response.decode([struct: %Quandl.V3.Model.DatasetMetadataContainer{}])
+    |> Response.decode(struct: %Quandl.V3.Model.DatasetMetadataContainer{})
   end
 
   @doc """
@@ -106,12 +119,18 @@ defmodule Quandl.V3.Api.Datasets do
   *   `{:error, info}` on failure
   """
 
+  @spec get_data_metadata(
+          String.t(),
+          String.t(),
+          keyword()
+        ) ::
+          {:ok, Quandl.V3.Model.DatabaseMetadataContainer.t()}
+          | {:error, Tesla.Env.t()}
   def get_data_metadata(
         database_code,
         dataset_code,
         optional_params \\ []
       ) do
-
     optional_params_config = %{
       :column_index => :query,
       :start_date => :query,
@@ -130,9 +149,8 @@ defmodule Quandl.V3.Api.Datasets do
       |> Request.add_param(:query, :api_key, Quandl.get_api_key())
       |> Request.add_optional_params(optional_params_config, optional_params)
 
-    Quandl.V3.Connection.new
+    Quandl.V3.Connection.new()
     |> Connection.execute(request)
-    |> Response.decode([struct: %Quandl.V3.Model.DatasetDataMetadataContainer{}])
+    |> Response.decode(struct: %Quandl.V3.Model.DatasetDataMetadataContainer{})
   end
-
 end

@@ -16,13 +16,12 @@ defmodule Quandl.V3.Api.Databases do
   ## Returns
   *   `{:ok, %Quandl.V3.Model.DatabaseMetadataContainer{}}` on success
   *   `{:error, info}` on failure
-
   """
+  @spec get_metadata(String.t()) ::
+          {:ok, Quandl.V3.Model.DatabaseMetadataContainer.t()}
+          | {:error, Tesla.Env.t()}
 
-  def get_metadata(
-        database_code
-      ) do
-
+  def get_metadata(database_code) do
     request =
       Request.new()
       |> Request.method(:get)
@@ -31,8 +30,8 @@ defmodule Quandl.V3.Api.Databases do
       })
       |> Request.add_param(:query, :api_key, Quandl.get_api_key())
 
-    Quandl.V3.Connection.new
+    Quandl.V3.Connection.new()
     |> Connection.execute(request)
-    |> Response.decode([struct: %Quandl.V3.Model.DatabaseMetadataContainer{}])
+    |> Response.decode(struct: %Quandl.V3.Model.DatabaseMetadataContainer{})
   end
 end

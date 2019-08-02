@@ -9,7 +9,7 @@ defmodule Quandl.V3.Model.DatasetDataMetadataContainer do
   use GoogleApi.Gax.ModelBase
 
   @type t :: %__MODULE__{
-          :dataset=> Quandl.V3.Model.DatasetDataMetadata.t()
+          :dataset => Quandl.V3.Model.DatasetDataMetadata.t()
         }
 
   field(:dataset, as: Quandl.V3.Model.DatasetDataMetadata)
