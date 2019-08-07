@@ -13,7 +13,7 @@ defmodule Quandl.V3.Api.Datatables do
 
   *   `datatable_code` (*type:* `String.t`) - datatable code, e.g. ETFG/FUND
   *   `optional_params` (*type:* `keyword()`) - row filter criteria
-      *   `ticket` (*type:* `String.t()`) - ticker filter condition, e.g. "SPY"
+      *   `ticker` (*type:* `String.t()`) - ticker filter condition, e.g. "SPY"
       *   `columns` (*type:* `String.t()`) - lists which columns to return, e.g. "ticker"
   ## Returns
   *   `{:ok, %Quandl.V3.Model.DatatableDataContainer{}}` on success
