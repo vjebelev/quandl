@@ -14,6 +14,7 @@ defmodule Quandl.V3.Api.Datatables do
   *   `datatable_code` (*type:* `String.t`) - datatable code, e.g. ETFG/FUND
   *   `optional_params` (*type:* `keyword()`) - row filter criteria
       *   `ticket` (*type:* `String.t()`) - ticker filter condition
+      *   `columns` (*type:* `String.t()`) - ticker filter condition
   ## Returns
   *   `{:ok, %Quandl.V3.Model.DatatableDataContainer{}}` on success
   *   `{:error, info}` on failure
@@ -26,13 +27,18 @@ defmodule Quandl.V3.Api.Datatables do
           {:ok, Quandl.V3.Model.DatatableDataContainer.t()}
           | {:error, Tesla.Env.t()}
 
-  def get_data(
-        datatable_code,
-        optional_params \\ []
-      ) do
+  def get_data( datatable_code, optional_params \\ []) do
+
     optional_params_config = %{
       :ticker => :query,
+      String.to_atom("qopts.columns") => :query
     }
+
+    optional_params = remap_keys(
+      optional_params, %{
+        :columns => String.to_atom("qopts.columns")
+      }
+    )
 
     request =
       Request.new()
@@ -44,7 +50,17 @@ defmodule Quandl.V3.Api.Datatables do
       |> Request.add_optional_params(optional_params_config, optional_params)
 
     Quandl.V3.Connection.new()
-    |> Connection.execute(request)
-    |> Response.decode(struct: %Quandl.V3.Model.DatatableDataContainer{})
+      |> Connection.execute(request)
+      |> Response.decode(struct: %Quandl.V3.Model.DatatableDataContainer{})
+  end
+
+  defp remap_keys(params, definitions) do
+    params
+    |> Enum.map(fn {k, v} ->
+      case Map.fetch(definitions, k) do
+        {:ok, p} -> {p, v}
+        :error -> {k, v}
+      end
+    end)
   end
 end
