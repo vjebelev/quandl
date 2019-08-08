@@ -9,7 +9,7 @@ The package can be installed by adding `quandl` to your list of dependencies in 
 ```elixir
 def deps do
   [
-    {:quandl, "~> 0.3.1"}
+    {:quandl, "~> 0.4.0"}
   ]
 end
 ```
@@ -66,8 +66,14 @@ To fetch metadata for the WIKI database:
 Quandl.V3.Databases.get_metadata("WIKI")
 ```
 
-To return the column "ticker" for the ETFG/FUND table.
+To return columns ticker and date  for the ETFG/FUND table.
 
 ```elixir
-Quandl.V3.Datatables.get_data("ETFG/FUND", columns: "ticker")
+Quandl.V3.Datatables.get_data("ETFG/FUND", columns: "ticker,date")
+```
+
+To fetch metadata for table ETFG/FUND.
+
+```elixir
+Quandl.V3.Datatables.get_metadata("ETFG/FUND")
 ```
