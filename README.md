@@ -9,7 +9,7 @@ The package can be installed by adding `quandl` to your list of dependencies in 
 ```elixir
 def deps do
   [
-    {:quandl, "~> 0.4.0"}
+    {:quandl, "~> 0.4.1"}
   ]
 end
 ```
@@ -23,7 +23,7 @@ be found at [https://hexdocs.pm/quandl](https://hexdocs.pm/quandl).
 Make sure Quandl API key is setup in your config file.
 
 ```elixir
-import Config
+use MixConfig
 
 config :quandl, api_key: "YOUR_API_KEY"
 ```
