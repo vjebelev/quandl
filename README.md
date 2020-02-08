@@ -9,7 +9,7 @@ The package can be installed by adding `quandl` to your list of dependencies in 
 ```elixir
 def deps do
   [
-    {:quandl, "~> 0.4.1"}
+    {:quandl, "~> 0.4.5"}
   ]
 end
 ```
@@ -33,12 +33,12 @@ Alternatively, use environment variable QUANDL_API_KEY.
 To fetch a time series of FB daily prices:
 
 ```elixir
-Quandl.V3.Datasets.get_data("WIKI", "FB")
+Quandl.V3.Api.Datasets.get_data("WIKI", "FB")
 ```
 
 To get monthly % changes in Facebook closing price for the year 2014:
 ```elixir
-Quandl.V3.Datasets.get_data(
+Quandl.V3.Api.Datasets.get_data(
   "WIKI",
   "FB",
   column_index: 4,
@@ -52,28 +52,28 @@ Quandl.V3.Datasets.get_data(
 To fetch metadata for the FB time series:
 
 ```elixir
-Quandl.V3.Datasets.get_metadata("WIKI", "FB")
+Quandl.V3.Api.Datasets.get_metadata("WIKI", "FB")
 ```
 
 To fetch data and metadata for the FB time series, in one api call:
 
 ```elixir
-Quandl.V3.Datasets.get_data_metadata("WIKI", "FB")
+Quandl.V3.Api.Datasets.get_data_metadata("WIKI", "FB")
 ```
 To fetch metadata for the WIKI database:
 
 ```elixir
-Quandl.V3.Databases.get_metadata("WIKI")
+Quandl.V3.Api.Databases.get_metadata("WIKI")
 ```
 
 To return columns ticker and date  for the ETFG/FUND table.
 
 ```elixir
-Quandl.V3.Datatables.get_data("ETFG/FUND", columns: "ticker,date")
+Quandl.V3.Api.Datatables.get_data("ETFG/FUND", columns: "ticker,date")
 ```
 
 To fetch metadata for table ETFG/FUND.
 
 ```elixir
-Quandl.V3.Datatables.get_metadata("ETFG/FUND")
+Quandl.V3.Api.Datatables.get_metadata("ETFG/FUND")
 ```
